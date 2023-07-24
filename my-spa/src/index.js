@@ -84,6 +84,14 @@ function App() {
     textAlign: "center",
   };
 
+  const welcomeTextStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    flexDirection: "column",
+  };
+
   const footerStyle = {
     padding: "2em",
     background: "#6c757d",
@@ -123,7 +131,7 @@ function App() {
   switch (view) {
     case "home":
       content = (
-        <div>
+        <div style={welcomeTextStyle}>
           <h1>Witaj na stronie głównej{isLoggedIn ? `, ${username}` : ""}</h1>
           <Carousel
             showThumbs={false}
