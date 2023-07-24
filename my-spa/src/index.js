@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // This imports the styles
 import { Carousel } from "react-responsive-carousel";
+import image1 from "./images/image1.jpg";
+import image2 from "./images/image2.jpg";
 
 function App() {
   const [view, setView] = useState("home");
@@ -12,13 +14,11 @@ function App() {
   const [imgUrl, setImgUrl] = useState("");
   const [contentItems, setContentItems] = useState([
     {
-      imgUrl:
-        "https://www.bd.com/content/dam/bdcom-assets/en/en-us/images/photography/homepage/homepage_header_main.jpg",
+      imgUrl: image1,
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      imgUrl:
-        "https://www.bd.com/content/dam/bd-assets/bd-com/en-us/images/corporate/homepage/carrer_site_banner_at_bd_com_photo_580x640.jpg",
+      imgUrl: image2,
       text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
   ]);
@@ -264,4 +264,5 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const rootContainer = document.getElementById("root");
+ReactDOM.createRoot(rootContainer).render(<App />);
