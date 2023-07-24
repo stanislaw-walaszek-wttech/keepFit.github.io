@@ -88,7 +88,7 @@ function App() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
+    height: "10vh",
     flexDirection: "column",
   };
 
@@ -176,7 +176,7 @@ function App() {
       break;
     case "about":
       content = (
-        <div>
+        <div style={welcomeTextStyle}>
           <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
           <p>
             Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
