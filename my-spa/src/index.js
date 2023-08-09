@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // This imports the styles
 import { Carousel } from "react-responsive-carousel";
-import image1 from "./images/image1.jpg";
-import image2 from "./images/image2.jpg";
 
 function App() {
   const [view, setView] = useState("home");
@@ -12,6 +10,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [text, setText] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const image1 =
+    "https://i.iplsc.com/kici-kici-na-to-twoj-kot-na-pewno-zareaguje-dlaczego/000GR52SDJMGH1OD-C122-F4.jpg";
+  const image2 = "https://vibracje.pl/userdata/public/news/images/108.jpg";
+
   const [contentItems, setContentItems] = useState([
     {
       imgUrl: image1,
@@ -22,11 +24,14 @@ function App() {
       text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
   ]);
+  const [counter, setCounter] = useState(0); 
 
   useEffect(() => {
-    const savedContentItems =
-      JSON.parse(localStorage.getItem("contentItems")) || [];
-    setContentItems(savedContentItems);
+    // Sprawdź, czy istnieją zapisane dane w localStorage
+    const savedContentItems = JSON.parse(localStorage.getItem("contentItems"));
+    if (savedContentItems) {
+      setContentItems(savedContentItems);
+    }
 
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     setIsLoggedIn(loggedInStatus === "true");
@@ -53,6 +58,10 @@ function App() {
     setPassword("");
     setView("login");
     localStorage.setItem("isLoggedIn", false);
+  };
+
+  const increaseCounter = () => {
+    setCounter(counter + 1);
   };
 
   const addContent = (event) => {
@@ -128,11 +137,41 @@ function App() {
     border: "1px solid #ccc",
   };
 
+  const counterContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "20px",
+  };
+  
+  const counterTextStyle = {
+    fontSize: "24px",
+    fontWeight: "bold",
+    marginBottom: "10px",
+  };
+  
+  const increaseButtonStyle = {
+    margin: "0",
+    padding: "10px 20px",
+    fontSize: "16px",
+    backgroundColor: "#28a745",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
+
   switch (view) {
     case "home":
       content = (
-        <div style={welcomeTextStyle}>
-          <h1>Witaj na stronie głównej{isLoggedIn ? `, ${username}` : ""}</h1>
+        <div>
+          <h1 style={welcomeTextStyle}>
+            Witaj na stronie głównej{isLoggedIn ? `, ${username}` : ""}
+          </h1>
+          <h2>Counter: {counter}</h2> {/* Wyświetlenie wartości licznika */}
+          <button style={buttonStyle} onClick={increaseCounter}>
+            Increase Counter
+          </button>
           <Carousel
             showThumbs={false}
             dynamicHeight={false}
