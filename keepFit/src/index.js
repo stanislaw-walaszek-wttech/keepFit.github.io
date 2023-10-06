@@ -3,6 +3,28 @@ import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // This imports the styles
 import { Carousel } from "react-responsive-carousel";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCzBJh5pbxzza7S1n6gdWNXoVk76BS3nEg",
+  authDomain: "stanislaw-walaszek.firebaseapp.com",
+  projectId: "stanislaw-walaszek",
+  storageBucket: "stanislaw-walaszek.appspot.com",
+  messagingSenderId: "356655480426",
+  appId: "1:356655480426:web:48fe793522c5cb88ac9413",
+  measurementId: "G-FVXLT97JP9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 function App() {
   const [view, setView] = useState("home");
   const [username, setUsername] = useState("");
